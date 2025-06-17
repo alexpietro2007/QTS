@@ -12,4 +12,5 @@ app.use('/firma/1.0.0', clienteRoutes)
 app.listen(process.env.PORTA, () => {
   console.log(`Operando na porta ${process.env.PORTA}`)
   testarConexao(conexao())
+  console.log("amem")
 })
