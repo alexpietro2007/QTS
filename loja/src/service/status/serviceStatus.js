@@ -102,10 +102,10 @@ async function incluirStatu(infos) {
 }
 
 module.exports = {
-  incluirProduto,
-  editarParcialmenteProduto,
-  editarIntegralmenteProduto,
-  buscarProdutos,
-  buscarProdutoCodigo,
-  deletarProduto 
+  incluirStatu,
+  editarParcialmenteStatu,
+  editarIntegralmenteStatu,
+  buscarStatus,
+  buscarStatu,
+  deletarStatu 
 }
