@@ -12,44 +12,44 @@ const {
     res.json(Status)
   }
   
-  const obterProduto = async (req, res) => {
+  const obterStatu = async (req, res) => {
     const codigo = parseInt(req.params.codigo)
-    const produto = await buscarProdutoodigo(codigo)
-    res.json(produto)C
+    const statu = await buscarStatu(codigo)
+    res.json(statu);
   }
   
-  const criarProduto = async (req, res) => {
-    const { codigo, nome, id_categoria, preco} = req.body
-    const infos = [codigo, nome, id_categoria, preco]
-    const result = await incluirProduto(infos)
+  const criarStatu = async (req, res) => {
+    const {codigo, nome} = req.body
+    const infos = [codigo, nome]
+    const result = await incluirStatu(infos)
     res.json(result)
   }
   
-  const atualizarProduto = async (req, res) => {
-    const { codigo, nome, id_categoria, preco} = req.body
-    const infos = [nome, id_categoria, preco]
-    const result = await editarIntegralmenteCliente(infos, codigo)
+  const atualizarStatu = async (req, res) => {
+    const { codigo, nome} = req.body
+    const infos = [nome]
+    const result = await editarIntegralmenteStatu(infos, codigo)
     res.status(200).json(result)
   }
   
-  const atualizarParcialProduto = async (req, res) => {
+  const atualizarParcialStatu = async (req, res) => {
     const { codigo, campo, valor } = req.body
-    const result = await editarParcialmenteProduto(codigo, campo, valor)
+    const result = await editarParcialmenteStatu(codigo, campo, valor)
     res.status(200).json(result)
   }
   
-  const excluirProduto = async (req, res) => {
+  const excluirStatu = async (req, res) => {
     const { codigo } = req.body
-    const result = await deletarProduto(codigo)
+    const result = await deletarStatu(codigo)
     res.json(result)
   }
   
   module.exports = {
     listarStatus,
-    obterProduto,
-    criarProduto,
-    atualizarProduto,
-    atualizarParcialProduto,
-    excluirProduto
+    obterStatu,
+    criarStatu,
+    atualizarStatu,
+    atualizarParcialStatu,
+    excluirStatu
   }
   
