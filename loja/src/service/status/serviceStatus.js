@@ -47,9 +47,9 @@ async function deletarStatu(codigo) {
   }
 }
 
-async function editarIntegralmenteProduto(infos, codigo) {
+async function editarIntegralmenteStatu(infos, codigo) {
 
-  const sql = `UPDATE tbl_produtos SET nome = ?, id_categoria = ?, preco = ? WHERE codigo = ${codigo} ;`
+  const sql = `UPDATE tbl_produtos SET nome WHERE codigo = ${codigo} ;`
   const conn = await conexao()
 
   try {
@@ -63,15 +63,15 @@ async function editarIntegralmenteProduto(infos, codigo) {
   }
 }
 
-async function editarParcialmenteProduto(codigo, campo, valor) {
+async function editarParcialmenteStatu(codigo, campo, valor) {
   const data = [valor, codigo]
 
-  const colunasPermitidas = ['nome', 'id_categoria', 'preco']; // Adicione as colunas permitidas
+  const colunasPermitidas = ['nome']; // Adicione as colunas permitidas
   if (!colunasPermitidas.includes(campo)) {
     throw new Error('Coluna inválida');
   }
 
-  const sql = `UPDATE tbl_produtos set ${campo} = ? WHERE codigo = ? ;`
+  const sql = `UPDATE tbl_status set ${campo} = ? WHERE codigo = ? ;`
   const conn = await conexao()
 
   try {
@@ -85,9 +85,9 @@ async function editarParcialmenteProduto(codigo, campo, valor) {
   }
 }
 
-async function incluirProduto(infos) {
+async function incluirStatu(infos) {
   const data = [infos]
-  const sql = `INSERT INTO tbl_produtos (codigo, nome, id_categoria, preco) VALUES ?`
+  const sql = `INSERT INTO tbl_produtos (id, nome) VALUES ?`
   const conn = await conexao()
 
   try {
