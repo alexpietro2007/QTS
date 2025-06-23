@@ -5,7 +5,7 @@ const {
   editarIntegralmenteCliente,
   editarParcialmenteCliente,
   deletarCliente
-} = require('../DAO/cliente/serviceCliente') // ou onde estiver seu módulo
+} = require('../service/cliente/serviceCliente.js') // ou onde estiver seu módulo
 
 const listarClientes = async (req, res) => {
   const clientes = await buscarClientes()
