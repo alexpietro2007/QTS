@@ -1,9 +1,9 @@
 const { conexao } = require('../conexao.js')
 
 
-async function buscarClientes() {
-  console.log('Service de Cliente')
-  const sql = `SELECT * FROM tbl_cliente;`
+async function buscarStatus() {
+  console.log('Service de Status')
+  const sql = `SELECT * FROM tbl_status;`
 
   const conn = await conexao()
   try {
@@ -16,8 +16,8 @@ async function buscarClientes() {
   }
 }
 
-async function buscarCliente(codigo) {
-  const sql = `SELECT * FROM tbl_cliente WHERE codigo = ?`
+async function buscarStatu(codigo) {
+  const sql = `SELECT * FROM tbl_status WHERE codigo = ?`
 
   const conn = await conexao()
 
@@ -31,9 +31,9 @@ async function buscarCliente(codigo) {
   }
 }
 
-async function deletarCliente(codigo) {
+async function deletarStatu(codigo) {
 
-  const sql = `DELETE FROM tbl_cliente WHERE codigo = ?`
+  const sql = `DELETE FROM tbl_status WHERE codigo = ?`
   const conn = await conexao()
 
   try {
@@ -47,9 +47,9 @@ async function deletarCliente(codigo) {
   }
 }
 
-async function editarIntegralmenteCliente(infos, codigo) {
+async function editarIntegralmenteProduto(infos, codigo) {
 
-  const sql = `UPDATE tbl_cliente SET telefone = ?, nome = ?, limite = ?, id_endereco = ?, id_status = ? WHERE codigo = ${codigo} ;`
+  const sql = `UPDATE tbl_produtos SET nome = ?, id_categoria = ?, preco = ? WHERE codigo = ${codigo} ;`
   const conn = await conexao()
 
   try {
@@ -63,15 +63,15 @@ async function editarIntegralmenteCliente(infos, codigo) {
   }
 }
 
-async function editarParcialmenteCliente(codigo, campo, valor) {
+async function editarParcialmenteProduto(codigo, campo, valor) {
   const data = [valor, codigo]
 
-  const colunasPermitidas = ['nome', 'email', 'telefone', 'id_endereco', 'id_status', 'limite']; // Adicione as colunas permitidas
+  const colunasPermitidas = ['nome', 'id_categoria', 'preco']; // Adicione as colunas permitidas
   if (!colunasPermitidas.includes(campo)) {
     throw new Error('Coluna inválida');
   }
 
-  const sql = `UPDATE tbl_cliente set ${campo} = ? WHERE codigo = ? ;`
+  const sql = `UPDATE tbl_produtos set ${campo} = ? WHERE codigo = ? ;`
   const conn = await conexao()
 
   try {
@@ -85,9 +85,9 @@ async function editarParcialmenteCliente(codigo, campo, valor) {
   }
 }
 
-async function incluirCliente(infos) {
+async function incluirProduto(infos) {
   const data = [infos]
-  const sql = `INSERT INTO tbl_cliente (codigo, nome, telefone, limite, id_endereco, id_status) VALUES ?`
+  const sql = `INSERT INTO tbl_produtos (codigo, nome, id_categoria, preco) VALUES ?`
   const conn = await conexao()
 
   try {
@@ -102,11 +102,10 @@ async function incluirCliente(infos) {
 }
 
 module.exports = {
-  incluirCliente,
-  editarParcialmenteCliente,
-  editarIntegralmenteCliente,
-  buscarClientes,
-  buscarCliente,
-  deletarCliente 
-
+  incluirProduto,
+  editarParcialmenteProduto,
+  editarIntegralmenteProduto,
+  buscarProdutos,
+  buscarProdutoCodigo,
+  deletarProduto 
 }

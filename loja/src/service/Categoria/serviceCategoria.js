@@ -1,5 +1,5 @@
 async function buscarCategorias() {
-  console.log('DAO de CLIENTE')
+  console.log('Service de Categoria')
   const sql = `SELECT * FROM tbl_categoria;`
 
   const conn = await conexao()
